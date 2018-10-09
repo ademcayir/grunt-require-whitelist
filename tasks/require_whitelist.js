@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         
         //engineering white-listed modules
         'soap', 'moment', 'apnagent', 'futures', 'goo.gl', 'mustache', 'request','timezone-js', 'twilio', 'underscore', 'underscore.string',
-        'ursa', 'validator', 'weather', 'xmldoc', 'xmldom', 'xpath', 'agentjs-commonlib', 'live-chat', 'vnodelib', 'node-jose'
+        'ursa', 'validator', 'xmldoc', 'xmldom', 'xpath', 'agentjs-commonlib', 'live-chat', 'vnodelib', 'node-jose', 'jsonwebtoken', 'xml-encryption'
       ],
     
     
