@@ -37,7 +37,8 @@ module.exports = function (grunt) {
     
     var done = this.async();
     console.log('Checking files: ');
-    console.log(this.filesSrc);
+    // Trying to minimize the ammount of bloat output 
+    //console.log(this.filesSrc);
     
     function checkRequire(require){
         var requireString = require.requireString;  
