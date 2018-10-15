@@ -23,8 +23,8 @@ module.exports = function (grunt) {
     var options = this.options({
         allow: [ 
         //allowed core modules
-        'crypto', 'dns', 'http', 'https', 'path', 'url',
-        
+        'crypto', 'dns', 'http', 'https', 'path', 'url', 'util',
+
         //engineering white-listed modules
         'soap', 'moment', 'apnagent', 'futures', 'goo.gl', 'mustache', 'request','timezone-js', 'twilio', 'underscore', 'underscore.string',
         'ursa', 'validator', 'xmldoc', 'xmldom', 'xpath', 'agentjs-commonlib', 'live-chat', 'vnodelib', 'node-jose', 'jsonwebtoken', 'xml-encryption'
