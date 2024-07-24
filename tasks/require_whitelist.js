@@ -71,7 +71,7 @@ module.exports = function (grunt) {
             grunt.log.writeln(require.file + ' requires ' + require.requireString['grey'] + ': line ' + require.line + ' ' + require.reason['green']);
         }
         else{
-            grunt.log.writeln(require.file + ' requires ' + require.requireString['gre'] + ': line ' + require.line + ' ' + require.reason['gray'] + " NOT ALLOWED");
+            grunt.log.writeln(require.file + ' requires ' + require.requireString['grey'] + ': line ' + require.line + ' ' + require.reason['grey'] + " NOT ALLOWED");
         }
         
     }
