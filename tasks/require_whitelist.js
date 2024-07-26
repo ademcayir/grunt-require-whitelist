@@ -104,12 +104,13 @@ module.exports = function (grunt) {
                         let ignore = false;
                         let req_text = "";
                         try {
-                            let nextline = file.indexOf("\n", node.range[0]);
-                            let line = file.substring(node.range[0],nextline);
+                            let filetext = "" + file;
+                            let nextline = filetext.indexOf("\n", node.range[0]);
+                            let line = filetext.substring(node.range[0],nextline);
                             if (line.indexOf("whitelist-ignore") !== -1) {
                                 ignore = true;
                             }
-                            req_text = file.substring(node.range[0], node.range[1]);
+                            req_text = filetext.substring(node.range[0], node.range[1]);
                             req_text = req_text.replace("require(", "");
                             req_text = req_text.replace(")", "");
                         } catch(e) {
@@ -123,10 +124,12 @@ module.exports = function (grunt) {
 
                               try {
                                   let ll = "" + file;
+                                  
                                   if (ll.length > 30) {
                                     ll = ll.substring(0, 30);
                                   }
                                   console.log("LL " + ll );
+                                  console.log("LL0 " + ll.length );
                                   console.log("LL1 " + node.range[0] );
                                   console.log("LL2 " + node.range[1] );
 
