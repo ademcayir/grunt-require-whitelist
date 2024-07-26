@@ -120,35 +120,11 @@ module.exports = function (grunt) {
                             if (type === 'BinaryExpression') {
                                 dif--;
                                 strings = "Dynamic - " + req_text;
-
-
-                              try {
-                                  let ll = "" + file;
-                                  
-                                  if (ll.length > 30) {
-                                    ll = ll.substring(0, 30);
-                                  }
-                                  console.log("LL " + ll );
-                                  console.log("LL0 " + ll.length );
-                                  console.log("LL1 " + node.range[0] );
-                                  console.log("LL2 " + node.range[1] );
-
-                              } catch(e) {
-                                  console.log("LL ex " + e );
-                              }
-
-
-                              
-                              
                             }
                         }
-  
-                        
                         var temp = { file: filepath, requireString: strings, line: node.loc.start.line, ignore: ignore};
                         var require = checkRequire(temp);
-                        
                         logRequire(require);
-                        
                         if(!require.allowed){
                             errorRequires.push(require); 
                         }
