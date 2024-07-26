@@ -62,6 +62,14 @@ module.exports = function (grunt) {
                require.reason = 'whitelisted';
             }
         }
+        if (require.ignore) {
+            require.allowed = true;
+            if (!require.allowed) {
+                require.reason = 'not allowed becuase of ' + require.reason + ', but whitelist-ignore';
+            } else {
+                require.reason = 'whitelist-ignore';
+            }
+        }
     
         return require;
     }
@@ -88,9 +96,34 @@ module.exports = function (grunt) {
                 var requires = detective.find(file, opts);
            
                 if(requires){
+                    let dif = 0;
                     for(var i=0; i < requires.nodes.length; i++)
                     {
-                        var temp = { file: filepath, requireString: requires.strings[i], line: requires.nodes[i].loc.start.line};
+                        let node = requires.nodes[i];
+                        let strings = requires.strings[i + dif];
+                        let ignore = false;
+                        let req_text = "";
+                        try {
+                            let nextline = file.indexOf("\n", node.range[0]);
+                            let line = file.substring(node.range[0],nextline);
+                            if (line.indexOf("whitelist-ignore") !== -1) {
+                                ignore = true;
+                            }
+                            req_text = file.substring(node.range[0], node.range[1]);
+                            req_text = req_text.replace("require(", "");
+                            req_text = req_text.replace(")", "");
+                        } catch(e) {
+                        }
+                        if (node.arguments.length > 0) {
+                            let type = node.arguments[0].type;
+                            if (type === 'BinaryExpression') {
+                                dif--;
+                                strings = "" + req_text;
+                            }
+                        }
+  
+                        
+                        var temp = { file: filepath, requireString: strings, line: node.loc.start.line, ignore: ignore};
                         var require = checkRequire(temp);
                         
                         logRequire(require);
