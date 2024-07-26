@@ -79,7 +79,7 @@ module.exports = function (grunt) {
             grunt.log.writeln(require.file + ' requires ' + require.requireString['grey'] + ': line ' + require.line + ' ' + require.reason['green']);
         }
         else{
-            grunt.log.writeln(require.file + ' requires ' + require.requireString['grey'] + ': line ' + require.line + ' ' + require.reason['grey'] + " NOT ALLOWED");
+            grunt.log.writeln(require.file + ' requires ' + require.requireString['grey'] + ': line ' + require.line + ' ' + require.reason['grey'] + " NOT ALLOWED. (use whitelist-ignore in comment to ignore line)");
         }
         
     }
