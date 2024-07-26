@@ -118,7 +118,25 @@ module.exports = function (grunt) {
                             let type = node.arguments[0].type;
                             if (type === 'BinaryExpression') {
                                 dif--;
-                                strings = "" + req_text;
+                                strings = "Dynamic - " + req_text;
+
+
+                              try {
+                                  let ll = "" + file;
+                                  if (ll.length > 30) {
+                                    ll = ll.substring(0, 30);
+                                  }
+                                  console.log("LL " + ll );
+                                  console.log("LL1 " + node.range[0] );
+                                  console.log("LL2 " + node.range[1] );
+
+                              } catch(e) {
+                                  console.log("LL ex " + e );
+                              }
+
+
+                              
+                              
                             }
                         }
   
