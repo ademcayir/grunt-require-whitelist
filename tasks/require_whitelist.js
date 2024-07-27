@@ -96,13 +96,15 @@ module.exports = function (grunt) {
                 var requires = detective.find(file, opts);
            
                 if(requires){
-                    let dif = 0;
                     for(var i=0; i < requires.nodes.length; i++)
                     {
                         let node = requires.nodes[i];
-                        let strings = requires.strings[i + dif];
+                        let strings;
                         let ignore = false;
                         let req_text = "";
+                        if (node.arguments.length === 1 && node.arguments[0].type === 'Literal') {
+                            strings = node.arguments[0].value;
+                        }
                         try {
                             let filetext = "" + file;
                             let nextline = filetext.indexOf("\n", node.range[0]);
@@ -113,12 +115,20 @@ module.exports = function (grunt) {
                             req_text = filetext.substring(node.range[0], node.range[1]);
                             req_text = req_text.replace("require(", "");
                             req_text = req_text.replace(")", "");
+                            if (req_text.charAt(0) === '"' || req_text.charAt(0) === "'") {
+                                req_text = req_text.substring(1, req_text.length - 1);
+                            }
+                            if (req_text.charAt(req_text.length - 1) === '"' || req_text.charAt(req_text.length - 1) === "'") {
+                                req_text = req_text.substring(0, req_text.length - 1);
+                            }
+                            if (!strings) {
+                                strings = req_text;
+                            }
                         } catch(e) {
                         }
                         if (node.arguments.length > 0) {
                             let type = node.arguments[0].type;
-                            if (type === 'BinaryExpression') {
-                                dif--;
+                            if (type === 'BinaryExpression' || type === 'MemberExpression') {
                                 strings = "Dynamic - " + req_text;
                             }
                         }
