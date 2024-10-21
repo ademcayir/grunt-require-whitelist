@@ -87,7 +87,7 @@ module.exports = function (grunt) {
 
     async.each(this.filesSrc, function(filepath, next) {
     
-            var opts = { nodes: true, parse: { range: true, loc: true } };
+            var opts = { nodes: true, parse: { range: true, loc: true,ecmaVersion: 11   } };
           
             var filename = filepath;
             
