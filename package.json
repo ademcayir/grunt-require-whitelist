@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "detective": "^4.7.1",
+    "detective": "https://github.com/ademcayir/detective",
     "dependency-check": "^2.4.0",
     "acorn": "^8.13.0",
     "grunt-dependency-check": "^1.1.0"
